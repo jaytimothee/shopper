@@ -11,11 +11,11 @@
           <p class="ma-0 mt-8 text-center">${{ product.price }}</p>
         </div>
         <div class="card-actions justify-content-center pa-4">
-          <button class="x-small outlined" data-testid="btn-item-add">
+          <button v-if="checkIfinCart()" @click="handleAddProductToCart(product)" class="x-small outlined" data-testid="btn-item-add">
             Add To Cart
           </button>
 
-          <button class="x-small danger" data-testid="btn-item-remove">
+          <button v-else @click="handleRemoveProductFromCart(product)" class="x-small danger" data-testid="btn-item-remove">
             Remove
           </button>
         </div>
@@ -32,7 +32,15 @@ export default {
     products: Array
   },
   methods : {
-
+    handleAddProductToCart(product) {
+      this.$emit('add-product', product)
+    },
+    handleRemoveProductFromCart(productToRemove) {
+      this.$emit('remove-product', productToRemove)
+    },
+    checkIfinCart() {
+      this.$emit('check-if-in-cart')
+    }
   }
 }
 </script>

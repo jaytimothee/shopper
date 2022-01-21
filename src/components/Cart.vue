@@ -15,8 +15,8 @@
         </thead>
         <tbody>
         <tr v-for="(cartItem, index) in cart.items" :key="index" :data-testid="'cart-item-' + index">
-          <td data-testid="cart-item-name">{{ cartItem.item }}</td>
-          <td data-testid="cart-item-quantity">{{ cartItem.quantity }}</td>
+          <td data-testid="cart-item-name">{{ cartItem.name }}</td>
+          <td data-testid="cart-item-quantity">{{ cartItem.cartQuantity }}</td>
           <td class="numeric" data-testid="cart-item-price">${{ cartItem.price }}</td>
         </tr>
         </tbody>
@@ -62,6 +62,7 @@ export default {
       coupon : 0
     }
   },
+
   methods : {
 
   }

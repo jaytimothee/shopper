@@ -1,6 +1,6 @@
 <template>
   <div class="layout-row">
-    <ProductList class="flex-70" :products="products" />
+    <ProductList class="flex-70" :products="products" @add-product="addToCart" @remove-product="removeFromCart" />
     <Cart class="flex-30" :cart="cart" />
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
         discount: 0,
         selectedCoupon: 0
       },
-      products: []
+     products: []
     }
   },
   created() {
@@ -34,8 +34,20 @@ export default {
   },
   methods: {
     addToCart(product) {
+      // Calculate Subtotal
+      this.cart.subTotal += product.price
+      this.cart.items.push(product);
+
+      //calculate total
+      this.cart.totalPrice = this.cart.subTotal + this.cart.discount + this.cart.selectedCoupon
     },
-    removeFromCart(product) {
+    removeFromCart(productToRemove) {
+
+      let item = this.cart.items.filter((product) => {
+        console.log(product.id, productToRemove.id)
+        return product.id !== productToRemove.id
+        })
+        this.cart.items = item
     },
   }
 }

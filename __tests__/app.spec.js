@@ -1,5 +1,6 @@
 import {mount} from '@vue/test-utils';
-import App, {PRODUCTS} from '../src/Checkout.vue';
+import App from '../src/Checkout.vue';
+import {PRODUCTS} from '@/api/shop'
 
 describe('shopping_checkout_application', () => {
     let wrapper;
